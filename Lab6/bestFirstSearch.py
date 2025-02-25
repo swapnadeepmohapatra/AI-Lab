@@ -8,27 +8,26 @@ priorityQueue = PriorityQueue()
 
 explored = []
 
+def addEdge(x, y, cost):
+    graph[x].append((y, cost))
+    graph[y].append((x, cost))
 
 def bfs(start, goal):
     priorityQueue.put((0, start))
     explored.append(start)
     while not priorityQueue.empty():
-        v = priorityQueue.get()
+        vertex = priorityQueue.get()
 
-        print(v[1], end=" ")
+        print(vertex[1], end=" ")
 
-        if v[1] == goal:
-            print("Goal reached")
+        if vertex[1] == goal:
+            print("\nGoal reached")
             break
 
-        for u, cost in graph[v[1]]:
+        for u, cost in graph[vertex[1]]:
             if u not in explored:
                 explored.append(u)
                 priorityQueue.put((cost, u))
-
-def addEdge(x, y, cost):
-    graph[x].append((y, cost))
-    graph[y].append((x, cost))
 
 
 addEdge(0, 1, 3)
